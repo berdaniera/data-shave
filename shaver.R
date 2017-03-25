@@ -1,36 +1,9 @@
-# f = paste0(dd,ff[6])
-#
-# cc = numeric() # the number of columns in each row
-# rr = 0 # initial row
-# classes = tibble::tibble(rc=numeric(),cc=numeric(),first=numeric(),ctyp=list())
-#
-# rr = rr+1
-# ll = readr::read_lines(f, skip=rr-1, n_max=1) # the given line
-# if(length(ll)==0) break # if end of file
-# gcc = get_cols(ll, delim)[1,]
-# cc = append(cc, length(gcc)) # add to number of cols per row
-# newclass = as.character(unlist(lapply(gcc,class)))
-# # match row class
-# matchclass = sapply(classes$ctyp, function(x) all(x==newclass))
-# if(any(matchclass)){
-#   classes$rc[which(matchclass)] = classes$rc[which(matchclass)]+1
-# }else{
-#   if(length(newclass)>1 && !(newclass[1]=="factor" && all(newclass[-1]=="logical"))){
-#     # catch edge case where first column is text and commas are automatically added to fill space
-#     classes = tibble::add_row(classes, rc=1, cc=length(newclass), first=rr, ctyp=list(newclass))
-#   }
-# }
-# rr;gcc;classes;any(classes$rc/sum(classes$rc)>0.5)
+# Functions to shave messy CSVs
 
-
-
-
-# STRIP a messy csv
 # CONDITIONS:
-# - The number of data rows must be greater than the number of header rows
-#   because the column assessment is based on majority vote
-# one caveat: if the first data rows are not like the majority, they will be skipped
-# requires tibble and readr
+# - The number of data rows must be greater than the number of header rows because column assessment is based on a vote
+# - Requires tibble and readr
+
 get_cols = function(x, delim=",") tryCatch(read.table(textConnection(x), sep=delim), error=function(e) NULL)
 find_data_rows = function(f, delim=",", min_rows=10, col_spec=0.9, row_sens=0.5){
   cc = numeric() # the number of columns in each row
@@ -59,7 +32,7 @@ find_data_rows = function(f, delim=",", min_rows=10, col_spec=0.9, row_sens=0.5)
   }
   return(list(cc=cc, dd=classes[which.max(classes$rc/sum(classes$rc)),])) # most common row type
 }
-strip_csv = function(f, delim=",", min_rows=10, col_spec=0.9, row_sens=0.5, method="first"){
+shave_csv = function(f, delim=",", min_rows=10, col_spec=0.9, row_sens=0.5, method="first"){
   # min_rows = (0-n) the minimum number of rows to consider, should be related to the estimated number of header rows
   # col_spec = (0-1) specificity for classifying data rows based on column types, higher values will exclude false positives
   # row_sens = (0-1) sensitivity for identifying data rows, what fraction of rows must be in the data type to finish
@@ -81,14 +54,4 @@ strip_csv = function(f, delim=",", min_rows=10, col_spec=0.9, row_sens=0.5, meth
   cnames = as.character(unlist(get_cols(readr::read_lines(f, n_max=1, skip=hrow-1))))
   x = readr::read_csv(f, skip=srow, col_names=cnames, col_types=readr::cols())
   return(x)
-}
-
-
-
-dd = "/home/aaron/Downloads/wonky headers/"
-ff = list.files(dd)
-for(i in ff){
-  f = paste0(dd,i)
-  x = strip_csv(f)
-  print(x)
 }

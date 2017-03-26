@@ -48,14 +48,14 @@ These functions require the `readr` and `tibbble` packages (or just `tidyverse`)
 # Examples
 ### A bestiary of data files
 The code in `example.R` runs through a handful of example data files that I've pulled together. Each one has some peculiarities:
-- `AHS_2013_C01AHM_with_ann.csv` - from the [US Census]. Has two header rows (and lots of columns!)
-- `AMF_USWCr_2005_L2_WG_V0004.csv` - from the [Ameriflux network](https://ameriflux.lbl.gov/). Has multiple metadata rows at the top and two header rows. Also, has rows with many different "formats" (i.e., lots of missing data which makes it hard to identify the first data row)
-- `NC_Eno_2016-08-25_HW.csv` - from a [Hobo data logger](http://www.onsetcomp.com/) in a river in North Carolina. Has one metadata row, very few rows (to test the problem of `n_rows < min_rows`), and a first data row with a different format than the rest.
-- `NC_Eno_2016-11-22_HA.csv` - from another Hobo data logger. Same as the previous one, but with more rows.
-- `NC_Eno_2016-11-28_CS.dat` - from a [Campbell Scientific data logger](https://www.campbellsci.com/) in a river in North Carolina. Has a metadata row and multiple header rows.
-- `Sallyfork2-8.18.2016.csv` - from a [Solinist data logger](https://www.solinst.com/) in a river in West Virginia. Has multiple metadata rows.
-- `US-Dk3_1980_2013.csv` - from the Ameriflux network. Metadata and empty rows (a special case for readLines).
-- `US-WCr-Clean-2004-L0-vMar2013.csv` - from the Ameriflux network. Has metadata rows that are delimited to match the number of data columns. A challenge for classifying the start of the data rows.
+- [`AHS_2013_C01AHM_with_ann.csv`](https://github.com/berdaniera/data-shave/blob/master/example-files/AHS_2013_C01AHM_with_ann.csv) - from the [US Census](https://www.census.gov/). Has two header rows (and lots of columns!)
+- [`AMF_USWCr_2005_L2_WG_V0004.csv`](https://github.com/berdaniera/data-shave/blob/master/example-files/AMF_USWCr_2005_L2_WG_V004.csv) - from the [Ameriflux network](https://ameriflux.lbl.gov/). Has multiple metadata rows at the top and two header rows. Also, has rows with many different "formats" (i.e., lots of missing data which makes it hard to identify the first data row)
+- [`NC_Eno_2016-08-25_HW.csv`](https://github.com/berdaniera/data-shave/blob/master/example-files/NC_Eno_2016-08-25_HW.csv) - from a [Hobo data logger](http://www.onsetcomp.com/) in a river in North Carolina. Has one metadata row, very few rows (to test the problem of `n_rows < min_rows`), and a first data row with a different format than the rest.
+- [`NC_Eno_2016-11-22_HA.csv`](https://github.com/berdaniera/data-shave/blob/master/example-files/NC_Eno_2016-11-22_HA.csv) - from another Hobo data logger. Same as the previous one, but with more rows.
+- [`NC_Eno_2016-11-28_CS.dat`](https://github.com/berdaniera/data-shave/blob/master/example-files/NC_Eno_2016-11-28_CS.dat) - from a [Campbell Scientific data logger](https://www.campbellsci.com/) in a river in North Carolina. Has a metadata row and multiple header rows.
+- [`Sallyfork2-8.18.2016.csv`](https://github.com/berdaniera/data-shave/blob/master/example-files/Sallyfork2-8.18.2016.csv) - from a [Solinist data logger](https://www.solinst.com/) in a river in West Virginia. Has multiple metadata rows.
+- [`US-Dk3_1980_2013.csv`](https://github.com/berdaniera/data-shave/blob/master/example-files/US-Dk3_1980_2013.csv) - from the Ameriflux network. Metadata and empty rows (a special case for readLines).
+- [`US-WCr-Clean-2004-L0-vMar2013.csv`](https://github.com/berdaniera/data-shave/blob/master/example-files/US-WCr-Clean-2004-L0-vMar2013.csv) - from the Ameriflux network. Has metadata rows that are delimited to match the number of data columns. A challenge for classifying the start of the data rows.
 
 ### Exceptions
 I think the defaults will work for many cases. There are some known situations where the function struggles.
@@ -67,3 +67,6 @@ I think the defaults will work for many cases. There are some known situations w
 - [ ] Better documentation
 - [ ] More examples - send me files with a pull request!
 - [ ] Python version
+
+# Contact
+Get in touch at aaron.berdanier at gmail.com

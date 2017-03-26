@@ -2,8 +2,11 @@
 A safety razor for your csv files.
 
 > A: This thing came out the same time I was printing leaflets for the Shave the Data Foundation.
+
 > B: You mean Save the Data.
+
 > A: Oh is that what you did with them...
+
 (modified from Beverly Hills Ninja)
 
 ### This is a draft!

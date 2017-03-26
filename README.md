@@ -67,6 +67,7 @@ I think the defaults will work for many cases. There are some known situations w
 - [ ] Better documentation
 - [ ] More examples - send me files with a pull request!
 - [ ] Python version
+- [ ] Merge multiple header rows into a single row
 
 # Contact
 Get in touch at aaron.berdanier at gmail.com

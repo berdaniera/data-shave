@@ -3,6 +3,6 @@ dd = "example-files/"
 ff = list.files(dd)
 for(f in ff){
   fi = paste0(dd, f)
-  x = strip_csv(fi)
+  x = shave_csv(fi)
   print(x)
 }
